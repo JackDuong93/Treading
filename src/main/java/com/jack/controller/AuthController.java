@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jack.config.JwtProvider;
+import com.jack.model.TwoFactorOTP;
 import com.jack.model.User;
 import com.jack.repository.UserRepository;
 import com.jack.response.AuthResponse;
 import com.jack.service.CustomeUserDetailService;
+import com.jack.service.TwoFactorOtpService;
+import com.jack.utils.OtpUtils;
 
 @RestController
 @RequestMapping("/auth")
@@ -29,6 +32,8 @@ public class AuthController {
 	@Autowired
 	private CustomeUserDetailService customeUserDetailsService;
 	
+	@Autowired
+	private TwoFactorOtpService twoFactorOtpService;
 	
 	@PostMapping("/signup")
 	public ResponseEntity<AuthResponse> register(@RequestBody User user) throws Exception {
@@ -80,6 +85,28 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		
 		String jwt = JwtProvider.generateToken(auth);
+		
+		User authUser = userRepository.findByEmail(userName); 
+		
+		if(user.getTwoFactorAuth().isEnalbed()) {
+			AuthResponse res = new AuthResponse();
+			res.setMessage("Two factor auth is enabled");
+			res.setTwoFactorAuthEnable(true);
+			String otp = OtpUtils.generateOtp();
+			
+			TwoFactorOTP oldTwoFactorOTP = twoFactorOtpService
+					.findByUser(authUser.getId());
+			if(oldTwoFactorOTP!=null) {
+				twoFactorOtpService.deleteTwoFactorOtp(oldTwoFactorOTP);
+			}
+			
+			TwoFactorOTP newTwoFactorOTP = twoFactorOtpService
+					.createTwoFactorOtp(authUser, otp, jwt);
+			
+			res.setSession(newTwoFactorOTP.getId());
+			return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
+			
+		}
 		
 		AuthResponse res = new AuthResponse();
 		
