@@ -1,6 +1,8 @@
 package com.jack.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 import com.jack.domain.USER_ROLE;
 
 import jakarta.persistence.Embedded;
@@ -10,8 +12,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 public class User {
 
 	@Id

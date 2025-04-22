@@ -1,6 +1,7 @@
 package com.jack.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -126,6 +127,7 @@ public class AuthController {
 		
 	}
 
+	
 	private Authentication authenticate(String userName, String password) {
 		UserDetails userDetails = customeUserDetailsService.loadUserByUsername(userName);
 		
@@ -152,7 +154,7 @@ public class AuthController {
 			res.setMessage("Two factor authentication verified");
 			res.setTwoFactorAuthEnable(true);
 			res.setJwt(twoFactorOTP.getJwt());
-			
+
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
 		throw new Exception("invalid otp");

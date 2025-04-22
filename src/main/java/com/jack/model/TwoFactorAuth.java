@@ -2,6 +2,7 @@ package com.jack.model;
 
 import com.jack.domain.VerificationType;
 
+
 import lombok.Data;
 
 @Data
