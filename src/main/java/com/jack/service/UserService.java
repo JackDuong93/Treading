@@ -5,7 +5,7 @@ import com.jack.model.User;
 
 public interface UserService {
 	
-	public User findUserPrifileByJwt(String jwt) throws Exception;
+	public User findUserProfileByJwt(String jwt) throws Exception;
 	
 	public User findUserByEmail(String email) throws Exception;
 	
