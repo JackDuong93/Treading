@@ -26,13 +26,13 @@ public class Coin {
     private String image;
 	
 	@JsonProperty("current_price")
-    private double current_price;
+    private double currentPrice;
 	
 	@JsonProperty("market_cap")
-    private long market_cap;
+    private long marketCap;
 	
 	@JsonProperty("market_cap_rank")
-    private int market_cap_rank;
+    private int marketCapRank;
 	
 	@JsonProperty("fully_dilute_valuation")
     private long fullyDiluteValuation;
