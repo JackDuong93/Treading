@@ -25,7 +25,7 @@ public class AssetController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/coin/{coinId}/user")
+	@GetMapping("/{assetId}")
 	public ResponseEntity<Asset> getAssetById(
 			@PathVariable Long assetId
 			
@@ -34,6 +34,7 @@ public class AssetController {
 		return ResponseEntity.ok().body(asset);
 	}
 	
+	@GetMapping("/coin/{coinId}/user")
 	public ResponseEntity<Asset> getAssetByUserIdAndCoinId(
 			@PathVariable String coinId,
 			@RequestHeader("Authorization") String jwt
@@ -44,7 +45,7 @@ public class AssetController {
 		return ResponseEntity.ok().body(asset);
 	}
 	
-	@GetMapping("/coin/{coinId}/user")
+	@GetMapping()
 	public ResponseEntity<List<Asset>> getAssetsForUser(
 			@RequestHeader("Authorization") String jwt ) throws Exception {
 		

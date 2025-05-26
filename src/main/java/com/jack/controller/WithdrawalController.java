@@ -22,6 +22,7 @@ import com.jack.service.WalletService;
 import com.jack.service.WithdrawalService;
 
 @RestController
+@RequestMapping("/api/withdrawal")
 public class WithdrawalController {
 	
 	@Autowired
@@ -60,7 +61,7 @@ public class WithdrawalController {
 		
 	}
 	
-	@PostMapping("/api/withdrawal/{amount}")
+	@PostMapping("/api/admin/withdrawal/{id}/proceed/{accept}")
 	public ResponseEntity<?> proceedWithdrawal(
 			@PathVariable Long id,
 			@PathVariable boolean accept,
@@ -71,7 +72,7 @@ public class WithdrawalController {
 		
 		Withdrawal withdrawal = withdrawalService.proceedWithdrawal(
 				id, accept);
-		walletService.addBalance(userWallet, -withdrawal.getAmount());
+		walletService.addBalance(userWallet, withdrawal.getAmount());
 		
 		return new ResponseEntity<>(withdrawal, HttpStatus.OK);
 	}
