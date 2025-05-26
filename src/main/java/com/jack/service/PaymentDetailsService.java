@@ -1,6 +1,7 @@
 package com.jack.service;
 
 import com.jack.model.PaymentDetails;
+
 import com.jack.model.User;
 
 public interface PaymentDetailsService {

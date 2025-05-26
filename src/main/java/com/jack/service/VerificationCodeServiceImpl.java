@@ -3,6 +3,7 @@ package com.jack.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.jack.domain.VerificationType;
 import com.jack.model.User;
@@ -10,6 +11,7 @@ import com.jack.model.VerificationCode;
 import com.jack.repository.VerificationCodeRepository;
 import com.jack.utils.OtpUtils;
 
+@Service
 public class VerificationCodeServiceImpl implements VerificationCodeService{
 
 	@Autowired

@@ -3,12 +3,14 @@ package com.jack.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.jack.model.Asset;
 import com.jack.model.Coin;
 import com.jack.model.User;
 import com.jack.repository.AssetRepository;
 
+@Service
 public class AssetServiceImpl implements AssetService {
 	
 	@Autowired

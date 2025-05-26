@@ -27,8 +27,10 @@ import com.jack.service.UserService;
 @RequestMapping("/api/orders")
 public class OrderController {
 	
+	@Autowired
 	private OrderService orderService;
 	
+	@Autowired
 	private UserService userService;
 	
 	@Autowired
