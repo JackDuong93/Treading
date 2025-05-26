@@ -27,7 +27,8 @@ public class CoinController {
 	private ObjectMapper objectMapper;
 
 	@GetMapping
-	ResponseEntity<List<Coin>> getCoinList(@RequestParam("page") int page) 
+	ResponseEntity<List<Coin>> getCoinList(@RequestParam(required = false,
+	name="page") int page) 
 			throws Exception {
 		
 		List<Coin> coins = coinService.getCoinList(page);
@@ -83,7 +84,7 @@ public class CoinController {
 	
 	@GetMapping("/details/{coinId}")
 	ResponseEntity<JsonNode> getCoinDetails(
-			@PathVariable String coinId) throws Exception {
+			@PathVariable("coinId") String coinId) throws Exception {
 		
 		String coin = coinService.getCoinDetails(coinId);
 		JsonNode jsonNode = objectMapper.readTree(coin);
