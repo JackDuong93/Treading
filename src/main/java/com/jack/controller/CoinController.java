@@ -2,6 +2,7 @@ package com.jack.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +41,8 @@ public class CoinController {
 	
 	@GetMapping("/{coinId}/chart")
 	ResponseEntity<JsonNode> getMarketChart(
-			@PathVariable String coinId,
-			@RequestParam("days")int days) 
+			@PathVariable("coinId") String coinId,
+			@RequestParam("days") int days) 
 			throws Exception {
 		
 		String res = coinService.getMarketChart(coinId,days);

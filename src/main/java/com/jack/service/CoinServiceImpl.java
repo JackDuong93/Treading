@@ -60,14 +60,14 @@ public class CoinServiceImpl implements CoinService {
 	@Override
 	public String getMarketChart(String coinId, int days) throws Exception {
 		String url =
-				"https://api.coingecko.com/api/v3/coins/"+coinId+"market_chart?vs_currency=usd&days="+days;
+				"https://api.coingecko.com/api/v3/coins/"+coinId+"/market_chart?vs_currency=usd&days="+days;
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			
-			HttpEntity<String> entity = new HttpEntity<String>("parameter",headers);
+			HttpEntity<String> entity = new HttpEntity<String>("Parameter",headers);
 			
 			ResponseEntity<String> response = 
 					restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
@@ -166,7 +166,7 @@ public class CoinServiceImpl implements CoinService {
 	@Override
 	public String getTop50CoinsByMarketCapRank() throws Exception {
 		String url =
-				"https://api.coingecko.com/api/v3/coins/markets/vs_currency=usd&per_page_50&page=1";
+				"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page_50&page=1";
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -189,7 +189,7 @@ public class CoinServiceImpl implements CoinService {
 	@Override
 	public String getTreadingCoins() throws Exception {
 		String url =
-				"https://api.coingecko.com/api/v3/search/treading";
+				"https://api.coingecko.com/api/v3/search/trending";
 		
 		RestTemplate restTemplate = new RestTemplate();
 		

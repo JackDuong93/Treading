@@ -24,6 +24,7 @@ import com.jack.response.AuthResponse;
 import com.jack.service.CustomeUserDetailService;
 import com.jack.service.EmailService;
 import com.jack.service.TwoFactorOtpService;
+import com.jack.service.WatchListService;
 import com.jack.utils.OtpUtils;
 
 @RestController
@@ -42,6 +43,8 @@ public class AuthController {
 	@Autowired
 	private EmailService emailService;
 	
+	private WatchListService watchlistService;
+	
 	@PostMapping("/signup")
 	public ResponseEntity<AuthResponse> register(@RequestBody User user) throws Exception {
 		
@@ -59,6 +62,8 @@ public class AuthController {
 		newUser.setFullName(user.getFullName());
 		
 		User savedUser = userRepository.save(newUser);
+		
+		watchlistService.createWatchList(savedUser);
 		
 		Authentication auth = new UsernamePasswordAuthenticationToken(
 				user.getEmail(),
