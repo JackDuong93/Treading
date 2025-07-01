@@ -24,7 +24,6 @@ import com.jack.service.UserService;
 import com.jack.service.WalletService;
 
 @RestController
-@RequestMapping("/api/wallet")
 public class WalletController {
 
 	@Autowired

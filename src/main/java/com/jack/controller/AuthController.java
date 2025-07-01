@@ -43,6 +43,7 @@ public class AuthController {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
 	private WatchListService watchlistService;
 	
 	@PostMapping("/signup")
