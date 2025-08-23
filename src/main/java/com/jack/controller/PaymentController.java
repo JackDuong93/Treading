@@ -20,7 +20,6 @@ import com.razorpay.RazorpayException;
 import com.stripe.exception.StripeException;
 
 @RestController
-@RequestMapping("/api")
 public class PaymentController {
 
 	@Autowired
@@ -31,8 +30,8 @@ public class PaymentController {
 	
 	@PostMapping("/api/payment/{paymentMethod}/amount/{amount}")
 	public ResponseEntity<PaymentResponse> paymentHeandler(
-			@PathVariable PaymentMethod paymentMethod,
-			@PathVariable Long amount,
+			@PathVariable("paymentMethod") PaymentMethod paymentMethod,
+			@PathVariable("amount") Long amount,
 			@RequestHeader("Authorization") String jwt)
 					throws Exception,StripeException, RazorpayException 
 
