@@ -28,9 +28,10 @@ import com.jack.service.TwoFactorOtpService;
 import com.jack.service.WatchListService;
 import com.jack.utils.OtpUtils;
 
-@CrossOrigin(origins = "http://localhost:5173")
+
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
 	@Autowired

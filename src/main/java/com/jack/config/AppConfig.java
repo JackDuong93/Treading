@@ -2,7 +2,9 @@ package com.jack.config;
 
 import java.util.Arrays;
 
+
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,11 +49,12 @@ public class AppConfig {
 							"http://localhost:3000"
 						)
 					);
-				cfg.setAllowedMethods(Collections.singletonList("*"));
-				cfg.setAllowCredentials(true);
-				cfg.setExposedHeaders(Arrays.asList("Authorization"));
-				cfg.setExposedHeaders(Collections.singletonList("*"));		
-				cfg.setMaxAge(3600L);
+				
+	            cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+	            cfg.setAllowedHeaders(Arrays.asList("*"));
+	            cfg.setAllowCredentials(true);
+	            cfg.setExposedHeaders(Arrays.asList("Authorization", "Content-Type")); // 👈 giữ được header
+	            cfg.setMaxAge(3600L);
 				return cfg;
 			}
 		};
